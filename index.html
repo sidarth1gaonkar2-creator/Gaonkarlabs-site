@@ -1,75 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gaonkar Labs — AI phone assistants for small businesses</title>
-<meta name="description" content="Gaonkar Labs LLC builds AI receptionists that answer the calls small businesses miss.">
+<title>Gaonkar Labs — AI phone receptionists for med spas</title>
+<meta name="description" content="AI receptionists that answer the calls med spas miss — after hours, during treatments, when every line is busy. Call the live demo: (615) 552-0990.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,480;9..144,560&family=Instrument+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --accent: #1d4ed8; --ink: #1a1a1a; --muted: #555; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: #fff; color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                 "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.65; font-size: 17px;
+  :root{
+    --porcelain:#FAFAF7; --ink:#16211E; --eucalyptus:#3E7C6B;
+    --sage:#E9F0EC; --graphite:#57635E; --line:#DCE4DF;
+    --display:'Fraunces',Georgia,serif;
+    --body:'Instrument Sans',-apple-system,'Segoe UI',sans-serif;
+    --mono:'Spline Sans Mono',ui-monospace,'SF Mono',monospace;
   }
-  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
-  header { padding: 28px 0 0; }
-  header a.wordmark {
-    color: var(--ink); text-decoration: none; font-weight: 700;
-    letter-spacing: 0.12em; font-size: 15px;
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--porcelain);color:var(--ink);font-family:var(--body);
+       font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--eucalyptus)}
+  a:focus-visible{outline:2px solid var(--eucalyptus);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+  header{padding:28px 0}
+  .nav{display:flex;justify-content:space-between;align-items:baseline}
+  .wordmark{font-family:var(--display);font-weight:560;font-size:20px;
+            letter-spacing:.01em;color:var(--ink);text-decoration:none}
+  .wordmark span{color:var(--eucalyptus)}
+  .nav a.contact{font-size:15px;text-decoration:none;color:var(--graphite)}
+  .nav a.contact:hover{color:var(--eucalyptus)}
+
+  .hero{padding:64px 0 24px}
+  .hero h1{font-family:var(--display);font-weight:480;font-size:clamp(34px,5.4vw,54px);
+           line-height:1.12;letter-spacing:-.01em;max-width:17ch}
+  .hero p.lede{margin-top:22px;max-width:54ch;font-size:19px;color:var(--graphite)}
+
+  .call-card{margin:44px 0 8px;background:var(--ink);color:var(--porcelain);
+             border-radius:14px;padding:30px 32px;display:flex;flex-wrap:wrap;
+             gap:20px 40px;align-items:center;justify-content:space-between}
+  .call-card .label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+                    color:#9DB8AE;margin-bottom:6px}
+  .call-card a.number{font-family:var(--mono);font-weight:500;
+                      font-size:clamp(24px,4vw,34px);color:var(--porcelain);
+                      text-decoration:none;white-space:nowrap}
+  .call-card a.number:hover{color:#BFD9CE}
+  .call-card .hint{font-size:15px;color:#9DB8AE;max-width:34ch}
+  .live{display:inline-block;width:9px;height:9px;border-radius:50%;
+        background:#5FC49A;margin-right:9px;position:relative;top:-2px}
+  @media (prefers-reduced-motion: no-preference){
+    .live{animation:pulse 2.4s ease-in-out infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(95,196,154,.45)}
+                     50%{box-shadow:0 0 0 7px rgba(95,196,154,0)}}
   }
-  main { padding: 56px 0 72px; }
-  h1 {
-    font-size: 34px; line-height: 1.2; letter-spacing: 0.01em;
-    margin: 0 0 6px; font-weight: 750;
-  }
-  .tagline { font-size: 20px; color: var(--accent); margin: 0 0 34px; font-weight: 550; }
-  p { margin: 0 0 20px; }
-  .note { color: var(--muted); }
-  a { color: var(--accent); }
-  .pagelinks { margin-top: 40px; }
-  .pagelinks a { margin-right: 18px; }
-  footer {
-    border-top: 1px solid #e6e6e6; padding: 22px 0 40px;
-    font-size: 14px; color: var(--muted);
-  }
-  footer a { color: var(--muted); }
-  footer .dot { margin: 0 7px; color: #bbb; }
+
+  .transcript{margin:56px 0 8px;border:1px solid var(--line);border-radius:14px;
+              background:#fff;overflow:hidden}
+  .transcript .bar{padding:13px 22px;border-bottom:1px solid var(--line);
+                   font-family:var(--mono);font-size:13px;color:var(--graphite);
+                   display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+  .transcript ol{list-style:none;padding:26px 22px 10px}
+  .transcript li{display:grid;grid-template-columns:64px 1fr;gap:14px;
+                 margin-bottom:20px;max-width:640px}
+  .transcript .t{font-family:var(--mono);font-size:12.5px;color:var(--graphite);
+                 padding-top:4px}
+  .transcript .who{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+                   color:var(--eucalyptus);font-weight:600;display:block;margin-bottom:2px}
+  .transcript li.caller .who{color:var(--graphite)}
+  .transcript .note{padding:16px 22px;background:var(--sage);
+                    font-family:var(--mono);font-size:13.5px;color:var(--ink)}
+
+  section.band{padding:72px 0 8px}
+  .eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+           color:var(--eucalyptus);font-weight:600;margin-bottom:14px}
+  h2{font-family:var(--display);font-weight:480;font-size:clamp(26px,3.6vw,34px);
+     line-height:1.2;max-width:24ch}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:36px}
+  .cols h3{font-size:17px;font-weight:600;margin-bottom:8px}
+  .cols p{font-size:15.5px;color:var(--graphite)}
+  @media(max-width:720px){.cols{grid-template-columns:1fr}}
+
+  .wont{margin-top:36px;border-left:3px solid var(--eucalyptus);padding:6px 0 6px 24px;
+        max-width:60ch}
+  .wont p{color:var(--graphite);font-size:16px}
+  .wont p strong{color:var(--ink);font-weight:600}
+
+  .closing{padding:80px 0 40px}
+  .closing p{max-width:56ch;color:var(--graphite);margin-top:16px}
+  .closing a.mail{font-weight:600}
+
+  footer{border-top:1px solid var(--line);margin-top:48px;padding:28px 0 44px;
+         font-size:14px;color:var(--graphite)}
+  footer .row{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
+  footer a{color:var(--graphite);text-decoration:none}
+  footer a:hover{color:var(--eucalyptus)}
 </style>
 </head>
 <body>
-  <header class="wrap">
-    <a class="wordmark" href="index.html">GAONKAR LABS</a>
-  </header>
 
-  <main class="wrap">
-    <h1>Gaonkar Labs</h1>
-    <p class="tagline">AI phone assistants for small businesses.</p>
+<header class="wrap">
+  <nav class="nav">
+    <a class="wordmark" href="/">Gaonkar<span>&nbsp;</span>Labs</a>
+    <a class="contact" href="mailto:sidarthgaonkar@gaonkarlabs.com">sidarthgaonkar@gaonkarlabs.com</a>
+  </nav>
+</header>
 
-    <p>Gaonkar Labs LLC builds AI receptionists that answer the calls small
-    businesses miss — after hours, during the rush, when every line is busy.
-    Our assistants answer questions, book appointments directly into the
-    business&rsquo;s calendar, and escalate anything urgent to a human
-    immediately. Inbound calls only. Every call transcribed and reviewable
-    by the business.</p>
+<main class="wrap">
 
-    <p class="note">Currently working with health, wellness, and aesthetics
-    practices.</p>
+  <section class="hero">
+    <h1>The call your front desk couldn&rsquo;t answer just booked itself.</h1>
+    <p class="lede">Gaonkar Labs builds AI phone receptionists for med spas and
+    aesthetics practices — answering after hours, during treatments, and
+    whenever every line is busy. Callers get answers, real appointments, and a
+    confirmation text. You get the booking.</p>
 
-    <p>Contact: <a href="mailto:sidarthgaonkar@gaonkarlabs.com">sidarthgaonkar@gaonkarlabs.com</a></p>
-
-    <p class="pagelinks">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="sms-terms.html">SMS Terms</a>
-    </p>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      © 2026 Gaonkar Labs LLC<span class="dot">·</span>Lynnfield, MA<span class="dot">·</span><a href="privacy.html">Privacy</a><span class="dot">·</span><a href="sms-terms.html">SMS Terms</a><span class="dot">·</span><a href="mailto:sidarthgaonkar@gaonkarlabs.com">sidarthgaonkar@gaonkarlabs.com</a>
+    <div class="call-card">
+      <div>
+        <div class="label"><span class="live" aria-hidden="true"></span>Live demo — answers as a fictional spa</div>
+        <a class="number" href="tel:+16155520990">(615)&nbsp;552&#8209;0990</a>
+      </div>
+      <p class="hint">Call it like a client would. Ask about services, book a
+      time, try to trip it up. Sixty seconds tells you everything.</p>
     </div>
-  </footer>
+  </section>
+
+  <section aria-label="Example call">
+    <div class="transcript">
+      <div class="bar"><span>inbound call — 8:47 PM, after close</span><span>0:41</span></div>
+      <ol>
+        <li><span class="t">0:02</span><div><span class="who">Receptionist</span>
+          Thanks for calling Lumen Aesthetics! This is Claire. Are you calling to
+          book an appointment, or did you have a question?</div></li>
+        <li class="caller"><span class="t">0:09</span><div><span class="who">Caller</span>
+          Hi — do you have anything Thursday for a facial?</div></li>
+        <li><span class="t">0:14</span><div><span class="who">Receptionist</span>
+          Let me check the schedule. For Thursday I have 10&nbsp;AM, 1:15, or
+          3&nbsp;PM open — would any of those work?</div></li>
+        <li class="caller"><span class="t">0:24</span><div><span class="who">Caller</span>
+          1:15 works.</div></li>
+        <li><span class="t">0:27</span><div><span class="who">Receptionist</span>
+          Perfect. Can I get your name, and would you like a text confirmation
+          once you&rsquo;re booked?</div></li>
+      </ol>
+      <div class="note">→ Booked: Thursday 1:15 PM · confirmation text delivered · on the calendar before the caller hung up.</div>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">What it does</p>
+    <h2>Every call answered. Every booking captured. Anything urgent, escalated.</h2>
+    <div class="cols">
+      <div>
+        <h3>Answers as your practice</h3>
+        <p>Your services, your hours, your policies — from a knowledge base
+        built for your practice, not generic scripts. Callers hear your front
+        desk, not a bot reading a menu.</p>
+      </div>
+      <div>
+        <h3>Books real appointments</h3>
+        <p>Checks live availability, confirms date and time back, reads phone
+        numbers back digit by digit, and sends a confirmation text the moment
+        the booking lands.</p>
+      </div>
+      <div>
+        <h3>Knows when to hand off</h3>
+        <p>A caller describing a post-treatment concern gets a provider
+        callback arranged immediately — never medical advice from a machine.
+        Requests it can&rsquo;t handle go to your team with a name and number.</p>
+      </div>
+    </div>
+    <div class="wont">
+      <p><strong>What it deliberately won&rsquo;t do:</strong> quote prices,
+      give clinical advice, collect medical history, or guess. Every call is
+      transcribed and reviewable, and consent is asked before any text is
+      sent. Inbound calls only — no outbound anything.</p>
+    </div>
+  </section>
+
+  <section class="closing">
+    <p class="eyebrow">Working with us</p>
+    <h2>Built by one operator, for operators.</h2>
+    <p>Gaonkar Labs is founder-run. Your receptionist is built by hand from
+    your real service menu, tested against live calls before you ever hear it,
+    and refined from actual transcripts after launch. Currently taking on a
+    small number of health, wellness, and aesthetics practices.</p>
+    <p>Start with the demo above, then write to
+    <a class="mail" href="mailto:sidarthgaonkar@gaonkarlabs.com">sidarthgaonkar@gaonkarlabs.com</a>.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap row">
+    <span>© 2026 Gaonkar Labs LLC · Lynnfield, MA</span>
+    <span>
+      <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="sms-terms.html">SMS Terms</a>
+    </span>
+  </div>
+</footer>
+
 </body>
 </html>
